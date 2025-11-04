@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fee Calculator | Empowering the Nation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <img src="_images/logo.png.jpg" alt="Empowering the Nation Logo">
+    <nav id="toplinks">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li>Fee Calculator</li>
+        <li><a href="application.html">Application</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Fee Calculator | Empowering the Nation</h2>
+    <p>Select the courses you would like to take to see the total fee.</p>
+
+    <form>
+      <h3>Available Courses</h3>
+
+      <input type="checkbox" id="course1" name="course1" value="3500">
+      <label for="course1">Advanced Housekeeping - R3,500</label><br><br>
+
+      <input type="checkbox" id="course2" name="course2" value="4200">
+      <label for="course2">Professional Cooking - R4,200</label><br><br>
+
+      <input type="checkbox" id="course3" name="course3" value="1800">
+      <label for="course3">Child Care Specialist - R1,800</label><br><br>
+
+      <input type="checkbox" id="course4" name="course4" value="3800">
+      <label for="course4">Landscape Gardening - R3,800</label><br><br>
+
+      <input type="button" value="Calculate Total" onclick="calculateTotal()"><br><br>
+
+      <label>Total Fee:</label>
+      <input type="text" id="total" readonly>
+    </form>
+
+    <script>
+      function calculateTotal() {
+        let total = 0;
+
+        if (document.getElementById("course1").checked) {
+          total += 3500;
+        }
+        if (document.getElementById("course2").checked) {
+          total += 4200;
+        }
+        if (document.getElementById("course3").checked) {
+          total += 1800;
+        }
+        if (document.getElementById("course4").checked) {
+          total += 3800;
+        }
+
+        // Simple discount rule for multiple selections
+        let count = 0;
+        if (document.getElementById("course1").checked) count++;
+        if (document.getElementById("course2").checked) count++;
+        if (document.getElementById("course3").checked) count++;
+        if (document.getElementById("course4").checked) count++;
+
+        let discount = 0;
+        if (count == 2) {
+          discount = total * 0.05;
+        } else if (count == 3) {
+          discount = total * 0.10;
+        } else if (count >= 4) {
+          discount = total * 0.15;
+        }
+
+        total = total - discount;
+        document.getElementById("total").value = "R" + total.toFixed(2);
+      }
+    </script>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Empowering the Nation. All rights reserved.</p>
+    <nav id="bottomlinks">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li>Fee Calculator</li>
+        <li><a href="application.html">Application</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+</body>
+</html>
